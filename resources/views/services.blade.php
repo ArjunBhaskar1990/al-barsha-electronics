@@ -40,56 +40,91 @@
     <div class="scrolling-ticker work-ticker mt-4">
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-lg-12">
                     <!-- Scrolling Ticker Box Start -->
                     <div class="scrolling-ticker-box">
                         <!-- Scrolling Ticker Content Start -->
                         <div class="scrolling-content">
-                            <span><img src="/storage/assets/images/asterisk-icon.svg" alt="">Annual Maintenance Contracts</span>
-                            <span><img src="/storage/assets/images/asterisk-icon.svg" alt="">Data Migration & Recovery</span>
-                            <span><img src="/storage/assets/images/asterisk-icon.svg" alt="">Digital marketing</span>
-                        </div>
-                        <!-- Scrolling Ticker Content End -->
 
-                        <!-- Scrolling Ticker Content Start -->
-                        <div class="scrolling-content">
-                            <span><img src="/storage/assets/images/asterisk-icon.svg" alt="">IT Hardware Sales & Services </span>
+                            @foreach ($ourservice_details as $item)
+                                <span>
+                                    <img src="/storage/assets/images/asterisk-icon.svg"
+                                        alt="">{{ $item->service_name }}
+                                </span>
+                            @endforeach
 
                         </div>
-                        <!-- Scrolling Ticker Content End -->
+
                     </div>
                     <!-- Scrolling Ticker Box End -->
                 </div>
+
+
             </div>
         </div>
     </div>
     <section>
         <div class="container mt-5 py-5">
             <div class="row g-4">
-                <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up">
+
+                @foreach ($ourservice_details as $item)
+                    <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card">
+                            <img src="{{ asset('/storage/uploads/services/' . $item->image) }}" alt="{{ $item->name }}">
+                            <h3 class="card-title">{{ $item->service_name }}</h3>
+                            <div class="px-5">
+                                <p class="d-flex justify-content-center">
+                                    {{ $item->desc }}
+                                </p>
+                            </div>
+
+                            <div class="d-grid ">
+
+                                <button class="btn btn-primary">
+                                    <a href="https://wa.me/{{ $company->phone1 }}" alt="" class="w-100 text-white  ">
+                                        <img style="width:25px; height:25px;" src="/storage/uploads/whatsapp.gif" />
+
+                                        Whatsapp
+                                    </a>
+                                </button>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+                {{-- <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="card">
                         <img src="/storage/assets/images/an.jpg" alt="AMC">
                         <h3 class="card-title">Annual Maintenance Contracts</h3>
                     </div>
                 </div>
+
                 <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="card">
                         <img src="/storage/assets/images/data.jpg" alt="Data Migration">
                         <h3 class="card-title">Data Migration & Recovery</h3>
                     </div>
                 </div>
+
                 <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
                     <div class="card">
                         <img src="/storage/assets/images/it.jpg" alt="IT Hardware">
                         <h3 class="card-title">IT Hardware Sales & Services</h3>
                     </div>
                 </div>
+
                 <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                     <div class="card">
                         <img src="/storage/assets/images/dm.jpg" alt="Digital Marketing">
                         <h3 class="card-title">Digital Marketing</h3>
                     </div>
-                </div>
+                </div> --}}
+
             </div>
         </div>
     </section>

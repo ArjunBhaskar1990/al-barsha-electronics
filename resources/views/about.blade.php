@@ -46,7 +46,7 @@
                         <!-- About Us Img Start -->
                         <div class="about-us-img-1">
                             <figure class="image-anime">
-                                <img src="/storage/assets/images/about-us-img-1.jpg" alt="">
+                                <img src="{{ asset('/storage/uploads/about/' . $about->image1) }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Img End -->
@@ -54,7 +54,7 @@
                         <!-- About Us Img Start -->
                         <div class="about-us-img-2">
                             <figure class="image-anime">
-                                <img src="/storage/assets/images/about-us-img-2.jpg" alt="">
+                                <img src="{{ asset('/storage/uploads/about/' . $about->image2) }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Img End -->
@@ -66,14 +66,14 @@
                             </div>
 
                             <div class="about-experience-content">
-                                <h3><span class="counter">30</span>+ years of experience</h3>
+                                <h3><span class="counter">{{ $about->experience }}</span>+ years of experience</h3>
                             </div>
                         </div>
                         <!-- About Experience Box End -->
 
                         <!-- Company Review Start -->
                         <div class="company-review">
-                            <h3>5200+ five star reviews</h3>
+                            <h3>{{ $about->review_count }}+ five star reviews</h3>
                         </div>
                         <!-- Company Review End -->
                     </div>
@@ -86,19 +86,18 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">about us</h3>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Expert guidance and <span>Businessing.</span>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">{{ $about->title1 }}
+                                <span>{{ $about->title2 }}.</span>
                             </h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.4s">Receive tailored business that empowers you to
-                                navigate challenges and achieve your personal and professional goals. With expert
-                                guidance.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.4s">{{ $about->desc }}</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- About Us List Start -->
                         <div class="about-us-list wow fadeInUp" data-wow-delay="0.6s">
                             <ul>
-                                <li>goal setting and accountability</li>
-                                <li>mindset and confidence building</li>
+                                <li>{{ $about->feature1 }}</li>
+                                <li>{{ $about->feature2 }}</li>
                             </ul>
                         </div>
                         <!-- About Us List End -->
@@ -111,27 +110,32 @@
                                 <div class="company-client-images">
                                     <div class="client-image">
                                         <figure class="image-anime">
-                                            <img src="/storage/assets/images/satisfy-client-img-1.jpg" alt="">
+                                            <img src="{{ asset('/storage/uploads/about/' . $about->client_image1) }}"
+                                                alt="">
                                         </figure>
                                     </div>
                                     <div class="client-image">
                                         <figure class="image-anime">
-                                            <img src="/storage/assets/images/satisfy-client-img-2.jpg" alt="">
+                                            <img src="{{ asset('/storage/uploads/about/' . $about->client_image2) }}"
+                                                alt="">
                                         </figure>
                                     </div>
                                     <div class="client-image">
                                         <figure class="image-anime">
-                                            <img src="/storage/assets/images/satisfy-client-img-3.jpg" alt="">
+                                            <img src="{{ asset('/storage/uploads/about/' . $about->client_image3) }}"
+                                                alt="">
                                         </figure>
                                     </div>
                                     <div class="client-image">
                                         <figure class="image-anime">
-                                            <img src="/storage/assets/images/satisfy-client-img-4.jpg" alt="">
+                                            <img src="{{ asset('/storage/uploads/about/' . $about->client_image4) }}"
+                                                alt="">
                                         </figure>
                                     </div>
                                     <div class="client-image">
                                         <figure class="image-anime">
-                                            <img src="/storage/assets/images/satisfy-client-img-5.jpg" alt="">
+                                            <img src="{{ asset('/storage/uploads/about/' . $about->client_image5) }}"
+                                                alt="">
                                         </figure>
                                     </div>
                                 </div>
@@ -139,7 +143,7 @@
 
                                 <!-- Company Client Counter Start -->
                                 <div class="company-client-counter">
-                                    <p>Join our <span>5000</span>+ satisfied client</p>
+                                    <p>Join our <span>{{ $about->client_count }}</span>+ satisfied client</p>
                                 </div>
                                 <!-- Company Client Counter End -->
                             </div>
@@ -152,8 +156,8 @@
                                 </div>
 
                                 <div class="company-result-content">
-                                    <h3>Creative Result</h3>
-                                    <p>Award wining</p>
+                                    <h3> {{ $about->bulb_title1 }}</h3>
+                                    <p>{{ $about->bulb_title2 }}</p>
                                 </div>
                             </div>
                             <!-- About Company Result End -->
@@ -162,7 +166,7 @@
 
                         <!-- About Us Footet Start -->
                         <div class="about-us-footer wow fadeInUp" data-wow-delay="1s">
-                            <a href="contact.html" class="btn-default">get in touch</a>
+                            <a href="{{ route('page.about') }}" class="btn-default">About Us</a>
                         </div>
                         <!-- About Us Footet End -->
                     </div>
@@ -183,8 +187,9 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp">our approach</h3>
 
-                        <h2 class="wow fadeInUp" data-wow-delay="0.25s"> Lorem ipsum dolor sit amet consectetur
-                            <span>padipisicing elit.</span>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.25s">
+                            {{ $ourapproach->approach_title1 }}
+                            <span> {{ $ourapproach->approach_title2 }}</span>
                         </h2>
                     </div>
                     <!-- Section Title End -->
@@ -193,7 +198,7 @@
                 <div class="col-lg-5">
                     <!-- Section Btn Start -->
                     <div class="section-btn wow fadeInUp" data-wow-delay="0.5s">
-                        <a href="contact.html" class="btn-default">contact us</a>
+                        <a href="{{ route('page.contact') }}" class="btn-default">contact us</a>
                     </div>
                     <!-- Section Btn End -->
                 </div>
@@ -203,9 +208,7 @@
                 <div class="col-lg-6">
                     <!-- Our Approach Content Start -->
                     <div class="our-approach-content">
-                        <p class="wow fadeInUp">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam culpa
-                            facilis aspernatur distinctio tempora exercitationem excepturi dolores consectetur quisquam,
-                            consequuntur omnis ut molestiae explicabo odit. Consequatur, dolore. Eum, nam minima. </p>
+                        <p class="wow fadeInUp"> {{ $ourapproach->description }}</p>
 
                         <!-- Mission Vision Item Start -->
                         <div class="mission-vision-list">
@@ -218,8 +221,8 @@
                                         </div>
 
                                         <div class="mission-vision-content">
-                                            <h3>our mission</h3>
-                                            <p>Our mission is to inspire and equip individuals and businesses</p>
+                                            <h3> {{ $ourapproach->speciality1 }}</h3>
+                                            <p>{{ $ourapproach->speciality1desc }}</p>
                                         </div>
                                     </div>
                                     <!-- Mission Vision Item End -->
@@ -233,8 +236,8 @@
                                         </div>
 
                                         <div class="mission-vision-content">
-                                            <h3>our vision</h3>
-                                            <p>Our vision is to drive innovation for a brighter, sustainable future.</p>
+                                            <h3> {{ $ourapproach->speciality2 }}</h3>
+                                            <p>{{ $ourapproach->speciality2desc }}</p>
                                         </div>
                                     </div>
                                     <!-- Mission Vision Item End -->
@@ -248,9 +251,8 @@
                                         </div>
 
                                         <div class="mission-vision-content">
-                                            <h3>our value</h3>
-                                            <p>Our values are rooted in integrity, empathy, and empowerment. We are
-                                                committed to creating a supportive.</p>
+                                            <h3> {{ $ourapproach->speciality3 }}</h3>
+                                            <p>{{ $ourapproach->speciality3desc }}</p>
                                         </div>
                                     </div>
                                     <!-- Our Value Item End -->
@@ -261,7 +263,8 @@
 
                         <!-- Our Approch Content Footer Start -->
                         <div class="our-approach-content-footer wow fadeInUp" data-wow-delay="0.8s">
-                            <a href="contact.html" class="btn-default">Let's work together to turn your goals into
+                            <a href="{{ route('page.contact') }}" class="btn-default">Let's work together to turn your
+                                goals into
                                 reality. <u>Contact us Today</u> </a>
                         </div>
                         <!-- Our Approch Content Footer End -->
@@ -273,7 +276,7 @@
                     <!-- Our Approach Image Start -->
                     <div class="our-approach-image">
                         <figure class="image-anime reveal">
-                            <img src="/storage/assets/images/our-approach-img.jpg" alt="">
+                            <img src="{{ asset('/storage/uploads/ourapproach/'.$ourapproach->image) }}" alt="">
                         </figure>
                     </div>
                     <!-- Our Approach Image End -->
@@ -293,8 +296,9 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp">our branches</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay="0.25s">Partnering with top experts <span>and
-                                organizations</span></h2>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.25s">{{ $whychooseabout->ourbranch_title1 }}
+                            <span>{{ $whychooseabout->ourbranch_title2 }}</span>
+                        </h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -313,7 +317,7 @@
                     <!-- Company Logo Start -->
                     <div class="company-logo wow fadeInUp">
                         <!-- <img src="images/company-logo-1.svg" alt=""> -->
-                        <h5>BC 07 European Business Center, DIP 1, Dubai</h5>
+                        <h5>{{ $company->address1 }}</h5>
                     </div>
                     <!-- Company Logo End -->
                 </div>
@@ -321,7 +325,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <!-- Company Logo Start -->
                     <div class="company-logo wow fadeInUp" data-wow-delay="0.2s">
-                        <h5>Al Barsha 1, Dubai</h5>
+                        <h5>{{ $company->address2 }}</h5>
                     </div>
                     <!-- Company Logo End -->
                 </div>
@@ -329,7 +333,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <!-- Company Logo Start -->
                     <div class="company-logo wow fadeInUp" data-wow-delay="0.4s">
-                        <h5>Al jaddaf ,Dubai</h5>
+                        <h5>{{ $company->address3 }}</h5>
                     </div>
                     <!-- Company Logo End -->
                 </div>
@@ -337,12 +341,10 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <!-- Company Logo Start -->
                     <div class="company-logo wow fadeInUp" data-wow-delay="0.6s">
-                        <h5>Al Hisn Zone, Abu Dubai</h5>
+                        <h5>{{ $company->address4 }}</h5>
                     </div>
                     <!-- Company Logo End -->
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -358,17 +360,17 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">our expertise</h3>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.25s">Certified and experienced
-                                <span>business</span>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.25s">
+                                {{ $expertise->title1 }}
+                                <span>{{ $expertise->title2 }}</span>
                             </h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.5s">Choosing us means partnering with experienced
-                                coaches who are dedicated to unlocking your potential. </p>
+                            <p class="wow fadeInUp" data-wow-delay="0.5s">{{ $expertise->desc }}</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- Section Btn Start -->
                         <div class="section-btn wow fadeInUp" data-wow-delay="0.75s">
-                            <a href="contact.html" class="btn-default">contact now</a>
+                            <a href="{{ route('page.contact') }}" class="btn-default">contact now</a>
                         </div>
                         <!-- Section Btn End -->
                     </div>
@@ -380,33 +382,33 @@
                     <div class="company-experience-list">
                         <!-- Company Experience Item Start -->
                         <div class="company-experience-item">
-                            <h2><span class="counter">60</span>%</h2>
-                            <h3>Lorem ipsum dolor</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit..</p>
+                            <h2><span class="counter">{{ $expertise->percent_1 }}</span>%</h2>
+                            <h3>{{ $expertise->percent_title_1 }}</h3>
+                            <p>{{ $expertise->percent_desc_1 }}</p>
                         </div>
                         <!-- Company Experience Item End -->
 
                         <!-- Company Experience Item Start -->
                         <div class="company-experience-item">
-                            <h2><span class="counter">30</span>+</h2>
-                            <h3>Lorem ipsum dolor</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <h2><span class="counter">{{ $expertise->percent_2 }}</span>+</h2>
+                            <h3>{{ $expertise->percent_title_2 }}</h3>
+                            <p>{{ $expertise->percent_desc_2 }}</p>
                         </div>
                         <!-- Company Experience Item End -->
 
                         <!-- Company Experience Item Start -->
                         <div class="company-experience-item">
-                            <h2><span class="counter">60</span>%</h2>
-                            <h3>Lorem ipsum dolor</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <h2><span class="counter">{{ $expertise->percent_3 }}</span>%</h2>
+                            <h3>{{ $expertise->percent_title_3 }}</h3>
+                            <p>{{ $expertise->percent_desc_3 }}</p>
                         </div>
                         <!-- Company Experience Item End -->
 
                         <!-- Company Experience Item Start -->
                         <div class="company-experience-item">
-                            <h2><span class="counter">30</span>+</h2>
-                            <h3>Industry Mastery</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                            <h2><span class="counter">{{ $expertise->percent_4 }}</span>+</h2>
+                            <h3>{{ $expertise->percent_title_4 }}</h3>
+                            <p>{{ $expertise->percent_desc_4 }}</p>
                         </div>
                         <!-- Company Experience Item End -->
                     </div>
@@ -424,15 +426,16 @@
                 <div class="col-lg-6">
                     <div class="why-choose-us-content">
                         <!-- Section Title Start -->
+
+
                         <div class="section-title">
                             <h3 class="wow fadeInUp">why choose us ?</h3>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.25s">Businesstailored to <span>your needs</span>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.25s">{{ $whychooseabout->title1 }}
+                                <span>{{ $whychooseabout->title2 }}</span>
                             </h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.5s">We understand that no two clients are the
-                                same. That's why we create personalized business plans designed to address your specific
-                                challenges and goals. Whether you're focusing on personal growth or business
-                                development, our tailored approach ensures you get the exact guidance you need to
-                                succeed.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.5s">
+                                {{ $whychooseabout->desc }}
+                            </p>
                         </div>
                         <!-- Section Title End -->
 
@@ -442,8 +445,8 @@
                                 <!-- Skill Item Start -->
                                 <div class="skillbar" data-percent="90%">
                                     <div class="skill-data">
-                                        <div class="skill-title">Fast Support</div>
-                                        <div class="skill-no">100%</div>
+                                        <div class="skill-title">{{ $whychooseabout->percentage_title1 }}</div>
+                                        <div class="skill-no">{{ $whychooseabout->percentage_title1_count }}%</div>
                                     </div>
                                     <div class="skill-progress">
                                         <div class="count-bar"></div>
@@ -458,8 +461,8 @@
                                 <!-- Skill Item Start -->
                                 <div class="skillbar" data-percent="65%">
                                     <div class="skill-data">
-                                        <div class="skill-title">Expert Team</div>
-                                        <div class="skill-no">100%</div>
+                                        <div class="skill-title">{{ $whychooseabout->percentage_title2 }}</div>
+                                        <div class="skill-no">{{ $whychooseabout->percentage_title2_count }}%</div>
                                     </div>
                                     <div class="skill-progress">
                                         <div class="count-bar"></div>
@@ -477,12 +480,14 @@
                     <div class="why-choose-us-image">
                         <div class="why-choose-us-img-1">
                             <figure class="image-anime reveal">
-                                <img src="/storage/assets/images/why-choose-us-img-1.jpg" alt="">
+                                <img src="{{ asset('/storage/uploads/whychoose/' . $whychooseabout->image1) }}"
+                                    alt="">
                             </figure>
                         </div>
                         <div class="why-choose-us-img-2">
                             <figure class="image-anime reveal">
-                                <img src="/storage/assets/images/why-choose-us-img-2.jpg" alt="">
+                                <img src="{{ asset('/storage/uploads/whychoose/' . $whychooseabout->image2) }}"
+                                    alt="">
                             </figure>
                         </div>
 
@@ -497,8 +502,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     @include('components.footer')
