@@ -7,6 +7,7 @@ use App\Models\barshaFAQ;
 use App\Models\Expertise;
 use App\Models\OurService;
 use App\Models\Service;
+use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
@@ -458,10 +459,10 @@ class CommonController extends Controller
         $expertise->update($validation);
 
         return redirect()->back()->with('success', "Expertise Updated !!");
-
     }
 
-    public function faqSection() {
+    public function faqSection()
+    {
 
         $faqsection = barshaFAQ::get();
         $faqcontent = WhyChooseUs::select('faq_title1', 'faq_title2')->first();
@@ -469,7 +470,8 @@ class CommonController extends Controller
     }
 
 
-    public function updatefaqContent(Request $request){
+    public function updatefaqContent(Request $request)
+    {
 
 
         $validation = $request->validate([
@@ -483,7 +485,8 @@ class CommonController extends Controller
         return redirect()->back()->with('success', 'Faq Content Updated !!');
     }
 
-    public function updatefaqSection(Request $request){
+    public function updatefaqSection(Request $request)
+    {
 
 
         $validation = $request->validate([
@@ -525,18 +528,19 @@ class CommonController extends Controller
         $faqmodel5->save();
 
         return redirect()->back()->with('success', "Faq Updated !!");
-
     }
 
 
-    public function testimony(){
+    public function testimony()
+    {
 
         $testicontent = WhyChooseUs::select('testi_title1', 'testi_title2')->first();
-        return view('admin.testimonials', compact('testicontent'));
-
+        $testimonials = Testimonial::latest()->get();
+        return view('admin.testimonials', compact('testicontent', 'testimonials'));
     }
 
-    public function UpdateContenttestimonials(Request $request){
+    public function UpdateContenttestimonials(Request $request)
+    {
 
 
         $validation = $request->validate([
@@ -549,9 +553,90 @@ class CommonController extends Controller
         $testicontent->update($validation);
 
         return redirect()->back()->with('success', 'Testimonial Content Updated !!');
-
-
-
     }
 
+    public function StoreReview(Request $request)
+    {
+
+        $validation = $request->validate([
+            'name' => 'required',
+            'designation' => 'required',
+            'review' => 'required',
+            'image' => 'required|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=378,height=450',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $new_image = $this->ImageUpload($validation['image'], "testimonials", "customer");
+        }
+
+        Testimonial::create([
+            'name' => $validation['name'],
+            'designation' => $validation['designation'],
+            'review' => $validation['review'],
+            'image' => $new_image
+        ]);
+
+        return redirect()->back()->with('success', 'New Review Added !!');
+    }
+
+    public function editTestimony(Testimonial $testimony)
+    {
+
+        return view('admin.edit_testimonials', compact('testimony'));
+    }
+
+    public function UpdateReview(Request $request)
+    {
+
+        $validation = $request->validate([
+            'name' => 'required',
+            'designation' => 'required',
+            'review' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=378,height=450',
+        ]);
+        $reviewModel = Testimonial::find($request->review_id);
+
+        if ($request->hasFile('image')) {
+
+            $old_image = $reviewModel->image;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/testimonials/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['image'], "testimonials", "customer");
+
+            $reviewModel->update([
+                'image' => $new_image
+            ]);
+        }
+
+        $reviewModel->update([
+            'name' => $validation['name'],
+            'designation' => $validation['designation'],
+            'review' => $validation['review']
+        ]);
+
+        return redirect()->back()->with('success', 'Review Updated !!');
+    }
+
+    public function DestroyReview(Testimonial $testimony)
+    {
+
+        $image = $testimony->image;
+
+        if ($image) {
+            $image_path = public_path('/storage/uploads/testimonials/' . $image);
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+        $testimony->delete();
+
+        return response()->json(['success' => true, 'message' => 'Review Deleted !!', 'url' => '/admin/testimonials']);
+    }
 }

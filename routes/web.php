@@ -80,6 +80,10 @@ Route::middleware('auth')->group(function () {
     // Testimonials
 
     Route::get('/admin/testimonials', [CommonController::class, 'testimony'])->name('page.testimonials');
+    Route::get('/admin/testimonials/edit/{testimony}', [CommonController::class, 'editTestimony'])->name('edit.testimonials');
     Route::patch('/admin/testimonials/content', [CommonController::class, 'UpdateContenttestimonials'])->name('update.testimonialcontent');
+    Route::post('/admin/testimonials', [CommonController::class, 'StoreReview'])->name('store.newreview');
+    Route::patch('/admin/testimonials', [CommonController::class, 'UpdateReview'])->name('update.review');
+    Route::delete('/admin/testimonials/{testimony}', [CommonController::class, 'DestroyReview'])->name('destroy.review');
 
 });
