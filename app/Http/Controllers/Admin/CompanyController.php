@@ -21,6 +21,7 @@ class CompanyController extends Controller
     public function update(Request $request)
     {
 
+
         $validation = $request->validate([
 
             'company_name' => 'required',
@@ -37,9 +38,9 @@ class CompanyController extends Controller
             // 'fblink' => 'required',
             // 'instagram' => 'required',
             // 'google_map' => 'required',
-            'image' => 'nullable|mimes:jpg,jpeg,svg,webp,png,gif',
+            'image' => 'nullable|mimes:jpg,jpeg,png,svg,webp,gif',
         ]);
-        $companyModel = Company::find($request->company_id);
+        $companyModel = Company::first();
 
 
         if ($request->hasFile('image')) {
@@ -53,6 +54,11 @@ class CompanyController extends Controller
                     unlink($image_path);
                 }
             }
+
+            $new_image = $this->ImageUpload($validation['image'], "logo", "logo");
+            $companyModel->update([
+                'image' => $new_image
+            ]);
         }
 
         $companyModel->update([

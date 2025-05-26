@@ -4,7 +4,7 @@
 
 
 
-    <div class="col-12 grid-margin">
+    <div class="col-12 grid-margin ms-5">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Company
@@ -63,8 +63,12 @@
                     @error('google_map')
                         <span class="error">{{ $message }}</span>
                     @enderror
+                    @error('image')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                 </div>
-                <form action="{{ route('update.company') }}" method="POST">
+
+                <form action="{{ route('update.company') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="row">
@@ -78,20 +82,29 @@
                                         class="form-control" />
                                 </div>
                             </div>
+
                         </div>
+                    </div>
+                    <div class="row">
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="col-sm-5 col-form-label">Image 1</label>
-                                <input type="file" name="image1" class="file-upload-default">
+                                <input type="file" name="image" class="file-upload-default">
                                 <div class="input-group col-sm-3">
                                     <input type="text" class="form-control file-upload-info" disabled
-                                        placeholder="Up load Image">
+                                        placeholder="{{ $company->image ? $company->image : "Upload Image" }}">
                                     <span class="input-group-append ms-2">
                                         <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-3 mt-5">
+                            <img class="w-100" src="{{ asset('/storage/uploads/logo/' . $company->image) }}"
+                                alt="logo" />
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -247,6 +260,8 @@
                 </form>
             </div>
         </div>
+    </div>
+
 
     </div>
 @endsection

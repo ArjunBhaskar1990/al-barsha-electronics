@@ -1,7 +1,7 @@
     <link rel="stylesheet" href="/storage/admin/assets/vendors/feather/feather.css">
     <link rel="stylesheet" href="/storage/admin/assets/vendors/ti-icons/css/themify-icons.css">
     <link rel="stylesheet" href="/storage/admin/assets/vendors/css/vendor.bundle.base.css">
-    {{-- <link rel="stylesheet" href="/storage/admin/assets/vendors/font-awesome/css/font-awesome.min.css"> --}}
+     <link rel="stylesheet" href="/storage/admin/assets/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/storage/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->

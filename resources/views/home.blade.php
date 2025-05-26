@@ -13,10 +13,8 @@
     </header>
     <!-- Header End -->
 
-
-
     <!-- Hero Section Start -->
-    <div class="hero bg-section parallaxie">
+    <div class="hero bg-section parallaxie" style="background-image: url('/storage/uploads/common/{{ $homebanner->image }}')">
         <div class="hero-section">
             <div class="container-fluid">
                 <div class="row">
@@ -417,9 +415,7 @@
         </div>
     </div>
 
-
-
-    <div class="intro-video bg-section parallaxie">
+    <div class="intro-video bg-section parallaxie" style="background-image: url('/storage/uploads/common/{{ $whychoose->youtube_image }}')">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-8">

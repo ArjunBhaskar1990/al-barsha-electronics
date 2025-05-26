@@ -29,7 +29,7 @@
 
                 <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false"
                                 aria-controls="ui-basic">
                                 <i class="icon-layout menu-icon"></i>
@@ -54,11 +54,59 @@
                                             href="">Why Choose Us</a></li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('page.company') }}">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Company</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.homebanner') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Home Banner</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.aboutus') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">About Us</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.ourservices') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Our Services</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.whychoosehome') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Why Choose Us</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.youtube') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Youtube Section</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.expertise') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Expertise</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.faqsection') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">FAQ Section</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.testimonials') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Testimonials</span>
                             </a>
                         </li>
 
