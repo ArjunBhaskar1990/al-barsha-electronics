@@ -57,26 +57,14 @@
                                 @endif
                                 <tr>
                                     <td> {{ $loop->index + 1 }} </td>
-
                                     <td> {{ $pagename }} </td>
-                                    <td> {{ $item->designation }} </td>
                                     <td>
                                         <span>
-                                            <a href="">
+                                            <a href="{{ route('edit.metadata', $item->page_id) }}">
                                                 <i class="fa-solid fa-pencil text-primary"></i>
 
                                             </a>
                                         </span>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span>
-
-                                            <a href="#" onclick="">
-                                                <i class="fa-solid fa-trash-arrow-up text-danger"></i>
-                                            </a>
-
-                                        </span>
-
-
                                     </td>
                                 </tr>
                             @endforeach

@@ -15,7 +15,8 @@
 
 
     <!-- Page Header Start -->
-    <div class="page-header bg-section parallaxie" style="background-image:url('/storage/uploads/common/{{ $company->contact_breadcrumb }}')">
+    <div class="page-header bg-section parallaxie"
+        style="background-image:url('/storage/uploads/common/{{ $company->contact_breadcrumb }}')">
         <!-- Page Header Box Start -->
         <div class="page-header-box">
             <div class="container-fluid">
@@ -62,9 +63,25 @@
                         </div>
                         <!-- Contact Us Title End -->
 
+                        @error('fname')
+                            <span class="error"> {{ $message }}</span>
+                        @enderror
+                        @error('lname')
+                            <span class="error"> {{ $message }}</span>
+                        @enderror
+                        @error('email')
+                            <span class="error"> {{ $message }}</span>
+                        @enderror
+                        @error('phone')
+                            <span class="error"> {{ $message }}</span>
+                        @enderror
+                        @error('message')
+                            <span class="error"> {{ $message }}</span>
+                        @enderror
                         <!-- Contact Us Form Start -->
-                        <form id="contactForm" action="#" method="POST" data-toggle="validator" class="wow fadeInUp"
-                            data-wow-delay="0.4s">
+                        <form action="{{ route('send.contact') }}" method="POST" data-toggle="validator"
+                            class="wow fadeInUp" data-wow-delay="0.4s">
+                            @csrf
                             <div class="row">
                                 <div class="form-group col-md-6 mb-4">
                                     <input type="text" name="fname" class="form-control" id="fname"
@@ -127,7 +144,7 @@
                                 </div>
 
                                 <div class="contact-info-title">
-                                    <h3><a href="tel:{{$company->phone1 }}" class="colo">{{ $company->phone1 }}</a></h3>
+                                    <h3><a href="tel:{{ $company->phone1 }}" class="colo">{{ $company->phone1 }}</a></h3>
                                     <h3><a href="tel:{{ $company->phone2 }}" class="colo">{{ $company->phone2 }}</a></h3>
                                 </div>
                             </div>
@@ -151,8 +168,7 @@
                                 </div>
 
                                 <div class="contact-info-title">
-                                    <h3><a href="mailto:{{ $company->email }}"
-                                            class="colo">{{ $company->email }}</a></h3>
+                                    <h3><a href="mailto:{{ $company->email }}" class="colo">{{ $company->email }}</a></h3>
                                 </div>
                             </div>
                             <!-- Contact Info Body End -->
@@ -175,8 +191,8 @@
                                 </div>
 
                                 <div class="contact-info-title pt-4">
-                                    <h3>{{ $company->address1 }} </h3> <br/>
-                                    <h3>{{ $company->address2 }} </h3> <br/>
+                                    <h3>{{ $company->address1 }} </h3> <br />
+                                    <h3>{{ $company->address2 }} </h3> <br />
                                 </div>
                             </div>
                             <!-- Contact Info Body End -->
@@ -197,10 +213,8 @@
                 <div class="col-lg-12">
                     <!-- Google Map Iframe Start -->
                     <div class="google-map-iframe">
-                        <iframe
-                            src="{{ $company->google_map }}"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="{{ $company->google_map }}" width="600" height="450" style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <!-- Google Map Iframe End -->
                 </div>

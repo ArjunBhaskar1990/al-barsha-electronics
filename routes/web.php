@@ -20,9 +20,11 @@ Route::get('/', [HomeController::class, 'index'])->name('page.home');
 Route::get('/about', [HomeController::class, 'About'])->name('page.about');
 Route::get('/services', [HomeController::class, 'Services'])->name('page.services');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('page.contact');
+Route::post('/contact', [HomeController::class, 'sendMessage'])->name('send.contact');
 
 Route::get('/admin/login', [SessionController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/admin/login', [SessionController::class, 'store'])->name('login.user');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -107,4 +109,6 @@ Route::middleware('auth')->group(function () {
     // Meta Data SEO
 
     Route::get('/admin/digital-marketing', [MetaDataController::class, 'index'])->name('page.metadata');
+    Route::get('/admin/digital-marketing/edit/{page}', [MetaDataController::class, 'edit'])->name('edit.metadata');
+    Route::patch('/admin/digital-marketing', [MetaDataController::class, 'update'])->name('update.metadata');
 });

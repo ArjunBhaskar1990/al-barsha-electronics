@@ -16,6 +16,7 @@ use App\Models\Testimonial;
 use App\Models\WhyChooseAbout;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -53,7 +54,7 @@ class HomeController extends Controller
         $company = Company::first();
         $ourservice_details = OurService::get();
         $servicebg = Service::select('image')->first();
-        return view('services', compact('metadata', 'company', 'ourservice_details', 'whychoose','servicebg'));
+        return view('services', compact('metadata', 'company', 'ourservice_details', 'whychoose', 'servicebg'));
     }
 
 
@@ -63,5 +64,24 @@ class HomeController extends Controller
         $whychoose = WhyChooseUs::first();
         $company = Company::first();
         return view('contact', compact('metadata', 'company', 'whychoose'));
+    }
+
+    public function sendMessage(Request $request)
+    {
+
+        $validation = $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'message' => 'required',
+        ]);
+
+
+        $phone = '97152641515';
+        $message = "Hello I am " . $validation['fname'] ." ". $validation['lname']."," . $validation['email'] . "," . $validation['phone'] . "," . $validation['message'];
+        $url = "https://wa.me/$phone?text=" . urlencode($message);
+
+        return Redirect::away($url);
     }
 }
