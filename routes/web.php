@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MetaDataController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/why-choose-us', [CommonController::class, 'WhyChooseUs'])->name('page.whychoosehome');
     Route::patch('/admin/why-choose-us', [CommonController::class, 'UpdateWhyChooseUs'])->name('update.whychoosehome');
 
+    // Why Choose About
+
+    Route::get('/admin/why-choose-about', [CommonController::class, 'WhyChooseUsAbout'])->name('page.whychoose_about');
+    Route::patch('/admin/why-choose-about', [CommonController::class, 'UpdateWhyChooseUsAbout'])->name('update.whychooseabout');
+
 
     // Youtube Section
 
@@ -86,4 +92,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/testimonials', [CommonController::class, 'UpdateReview'])->name('update.review');
     Route::delete('/admin/testimonials/{testimony}', [CommonController::class, 'DestroyReview'])->name('destroy.review');
 
+    // Our Approach
+
+    Route::get('/admin/our-approach', [CommonController::class, 'ourApproach'])->name('page.ourapproach');
+    Route::patch('/admin/our-approach', [CommonController::class, 'UpdateourApproach'])->name('update.ourapproach');
+
+    // Our Branch & Footer Title
+
+
+    Route::get('/admin/branch-footer-title', [CommonController::class, 'branchFooter'])->name('page.branchfooter');
+    Route::patch('/admin/branch-footer-title', [CommonController::class, 'UpdatebranchFooter'])->name('update.branchfooter');
+
+
+    // Meta Data SEO
+
+    Route::get('/admin/digital-marketing', [MetaDataController::class, 'index'])->name('page.metadata');
 });

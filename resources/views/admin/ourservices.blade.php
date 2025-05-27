@@ -31,10 +31,13 @@
                     @error('desc')
                         <span class="error">{{ $message }}</span><br />
                     @enderror
+                    @error('service_breadcrumb_img')
+                        <span class="error">{{ $message }}</span><br />
+                    @enderror
 
                 </div>
 
-                <form action="{{ route('update.ourservicescontent') }}" method="POST">
+                <form action="{{ route('update.ourservicescontent') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
 
@@ -54,6 +57,25 @@
                                 <div class="col-sm-9">
                                     <input type="text" name="title2" value="{{ $servicedata->title2 }}"
                                         class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Service BreadCrumb ( 1920 x 768 )</label>
+                                <input type="file" name="service_breadcrumb_img" class="file-upload-default">
+                                <div class="input-group col-xs-12 d-flex align-items-center">
+                                    <input type="text" class="form-control file-upload-info" disabled
+                                        placeholder="{{ $servicedata->image }}">
+                                    <span class="input-group-append ms-2">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
+
+                                <div class="col-md-3 mt-5">
+                                    <img class="w-100"
+                                        src="{{ asset('/storage/uploads/common/' . $servicedata->image) }}"
+                                        alt="logo" />
                                 </div>
                             </div>
                         </div>

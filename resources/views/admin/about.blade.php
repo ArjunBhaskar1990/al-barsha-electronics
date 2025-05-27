@@ -127,10 +127,27 @@
                                     alt="logo" />
                             </div>
                         </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-group">
+                                <label>About BreadCrumb ( 1920 x 768 ) </label>
+                                <input type="file" name="about_bg" class="file-upload-default">
+                                <div class="input-group col-xs-12 d-flex align-items-center">
+                                    <input type="text" class="form-control file-upload-info" disabled
+                                        placeholder="{{ $about->about_page_bg }}">
+                                    <span class="input-group-append ms-2">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mt-5">
+                                <img class="w-100" src="{{ asset('/storage/uploads/common/' . $about->about_page_bg) }}"
+                                    alt="logo" />
+                            </div>
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Description</label>
+                                <label>Description</label>
                                 <div class="col-sm-9">
                                     <textarea type="text" name="desc" value="" class="form-control">{{ $about->desc }}</textarea>
                                 </div>

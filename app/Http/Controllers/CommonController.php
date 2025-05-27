@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\barshaFAQ;
+use App\Models\Company;
 use App\Models\Expertise;
+use App\Models\OurApproach;
 use App\Models\OurService;
 use App\Models\Service;
 use App\Models\Testimonial;
+use App\Models\WhyChooseAbout;
 use App\Models\WhyChooseUs;
 use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
@@ -40,6 +43,7 @@ class CommonController extends Controller
             'client_count' => 'required|numeric',
             'image1' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=473,height=596',
             'image2' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=235,height=244',
+            'about_bg' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=1920,height=768',
             'client_image1' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=50,height=50',
             'client_image2' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=50,height=50',
             'client_image3' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=50,height=50',
@@ -99,6 +103,24 @@ class CommonController extends Controller
 
             $aboutModel->update([
                 'image2' => $new_image
+            ]);
+        }
+        if ($request->hasFile('about_bg')) {
+
+            $old_image = $aboutModel->about_page_bg;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/common/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['about_bg'], "common", "aboutbg");
+
+            $aboutModel->update([
+                'about_page_bg' => $new_image
             ]);
         }
 
@@ -211,9 +233,11 @@ class CommonController extends Controller
     public function updatecontent(Request $request)
     {
 
+
         $validation = $request->validate([
             'title1' => 'required',
             'title2' => 'required',
+            'service_breadcrumb_img' => 'nullable|image|mimes:jpg,jpeg,svg,png,gif,webp|dimensions:width=1920,height=768',
             'desc' => 'required',
         ], [
             'desc' => "Content Description field is empty !!"
@@ -221,7 +245,30 @@ class CommonController extends Controller
 
         $serviceModel = Service::first();
 
-        $serviceModel->update($validation);
+        $serviceModel->update([
+            'title1' => $validation['title1'],
+            'title2' => $validation['title2'],
+            'desc' => $validation['desc'],
+        ]);
+
+        if ($request->hasFile('service_breadcrumb_img')) {
+
+            $old_image = $serviceModel->image;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/common/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['service_breadcrumb_img'], "common", "servicesbg");
+
+            $serviceModel->update([
+                'image' => $new_image
+            ]);
+        }
 
         return redirect()->back()->with('success', "Service Content Updated !!");
     }
@@ -638,5 +685,208 @@ class CommonController extends Controller
         $testimony->delete();
 
         return response()->json(['success' => true, 'message' => 'Review Deleted !!', 'url' => '/admin/testimonials']);
+    }
+
+
+    public function ourApproach()
+    {
+
+        $ourapproach = OurApproach::first();
+        return view('admin.ourapproach', compact('ourapproach'));
+    }
+
+    public function UpdateourApproach(Request $request)
+    {
+
+
+        $validation = $request->validate([
+
+            'approach_title1' => 'required',
+            'approach_title2' => 'required',
+            'description' => 'required',
+            'speciality1' => 'required',
+            'speciality1desc' => 'required',
+            'speciality2' => 'required',
+            'speciality2desc' => 'required',
+            'speciality3' => 'required',
+            'speciality3desc' => 'required',
+            'image' => 'nullable|image|mimes:jpg,jpeg,svg,gif,png,webp|dimensions:width=600,height=595',
+        ]);
+
+
+        $ourapproach = OurApproach::first();
+
+        if ($request->hasFile('image')) {
+
+            $old_image = $ourapproach->image;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/ourapproach/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['image'], "ourapproach", "approach");
+
+            $ourapproach->update([
+                'image' => $new_image
+            ]);
+        }
+
+        $ourapproach->update([
+            'approach_title1' => $validation['approach_title1'],
+            'approach_title2' => $validation['approach_title2'],
+            'description' => $validation['description'],
+            'speciality1' => $validation['speciality1'],
+            'speciality1desc' => $validation['speciality1desc'],
+            'speciality2' => $validation['speciality2'],
+            'speciality2desc' => $validation['speciality2desc'],
+            'speciality3' => $validation['speciality3'],
+            'speciality3desc' => $validation['speciality3desc'],
+        ]);
+
+        return redirect()->back()->with('success', 'Our Approach Updated !!');
+    }
+
+    public function WhyChooseUsAbout()
+    {
+        $whychooseabout = WhyChooseAbout::first();
+        return view('admin.whychoose_about', compact('whychooseabout'));
+    }
+
+    public function UpdateWhyChooseUsAbout(Request $request)
+    {
+        $validation = $request->validate([
+            'title1' => 'required',
+            'title2' => 'required',
+            'desc' => 'required',
+            'percentage_title1' => 'required',
+            'percentage_title1_count' => 'required|numeric',
+            'percentage_title2' => 'required',
+            'percentage_title2_count' => 'required|numeric',
+            'image1' => 'nullable|image|mimes:jpg,jpeg,svg,gif,png,webp|dimensions:width=413,height=452',
+            'image2' => 'nullable|image|mimes:jpg,jpeg,svg,gif,png,webp|dimensions:width=344,height=377',
+        ]);
+
+
+        $whychooseabout = WhyChooseAbout::first();
+
+        if ($request->hasFile('image1')) {
+
+            $old_image = $whychooseabout->image1;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/whychoose/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['image1'], "whychoose", "whychooseabout1");
+
+            $whychooseabout->update([
+                'image1' => $new_image
+            ]);
+        }
+
+        if ($request->hasFile('image2')) {
+
+            $old_image = $whychooseabout->image2;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/whychoose/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['image2'], "whychoose", "whychooseabout2");
+
+            $whychooseabout->update([
+                'image2' => $new_image
+            ]);
+        }
+
+        $whychooseabout->update([
+            'title1' => $validation['title1'],
+            'title2' => $validation['title2'],
+            'desc' => $validation['desc'],
+            'percentage_title1' => $validation['percentage_title1'],
+            'percentage_title1_count' => $validation['percentage_title1_count'],
+            'percentage_title2' => $validation['percentage_title2'],
+            'percentage_title2_count' => $validation['percentage_title2_count']
+        ]);
+
+
+        return redirect()->back()->with('success', 'Updated Why Choose About !!');
+    }
+
+    public function branchFooter()
+    {
+        $branchtitle = WhyChooseAbout::select('ourbranch_title1', 'ourbranch_title2')->first();
+        $footertitle = WhyChooseUs::select('footer_title1', 'footer_title2')->first();
+        $company = Company::select('contact_breadcrumb')->first();
+        return view('admin.branch_footertitle', compact('branchtitle', 'footertitle', 'company'));
+    }
+
+    public function UpdatebranchFooter(Request $request)
+    {
+
+
+
+        $validation = $request->validate([
+            'ourbranch_title1' => 'required',
+            'ourbranch_title2' => 'required',
+            'footer_title1' => 'required',
+            'footer_title2' => 'required',
+            'contact_bg' => 'nullable|image|mimes:jpg,jpeg,svg,gif,png,webp|dimensions:width=1920,height=768',
+        ], [
+            'ourbranch_title1' => 'Branch Title 1 Required !!',
+            'ourbranch_title2' => 'Branch Title 2 Required !!',
+            'footer_title1' => 'Footer Title 1 Required !!',
+            'footer_title2' => 'Footer Title 2 Required !!'
+        ]);
+
+
+        if ($request->hasFile('contact_bg')) {
+
+            $breadcrump_contact = Company::first();
+
+            $old_image = $breadcrump_contact->contact_breadcrumb;
+
+            if ($old_image) {
+
+                $image_path = public_path('/storage/uploads/common/' . $old_image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+
+            $new_image = $this->ImageUpload($validation['contact_bg'], "common", "contact_bg");
+
+            $breadcrump_contact->update([
+                'contact_breadcrumb' => $new_image
+            ]);
+        }
+
+
+        $branchtitle = WhyChooseAbout::first();
+        $footertitle = WhyChooseUs::first();
+
+
+        $branchtitle->ourbranch_title1 = $validation['ourbranch_title1'];
+        $branchtitle->ourbranch_title2 = $validation['ourbranch_title2'];
+        $branchtitle->save();
+
+        $footertitle->footer_title1 = $validation['footer_title1'];
+        $footertitle->footer_title2 = $validation['footer_title2'];
+        $footertitle->save();
+
+
+        return redirect()->back()->with('success', "Title Updated !!");
     }
 }

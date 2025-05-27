@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class WhyChooseAbout extends Model
 {
-    //
+    protected $guarded;
 }

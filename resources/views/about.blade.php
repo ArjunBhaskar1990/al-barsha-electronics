@@ -15,7 +15,7 @@
 
 
     <!-- Page Header Start -->
-    <div class="page-header bg-section">
+    <div class="page-header bg-section" style="background-image: url('/storage/uploads/common/{{ $about->about_page_bg }}')">
         <!-- Page Header Box Start -->
         <div class="page-header-box">
             <div class="container-fluid">

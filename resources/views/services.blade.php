@@ -16,7 +16,7 @@
 
 
     <!-- Page Header Start -->
-    <div class="page-header bg-section parallaxie">
+    <div class="page-header bg-section parallaxie" style="background-image: url('/storage/uploads/common/{{ $servicebg->image }}')">
         <!-- Page Header Box Start -->
         <div class="page-header-box">
             <div class="container-fluid">
@@ -132,4 +132,4 @@
 
 
     @include('components.footer')
-@section('content')
+@endsection

@@ -52,7 +52,8 @@ class HomeController extends Controller
         $whychoose = WhyChooseUs::first();
         $company = Company::first();
         $ourservice_details = OurService::get();
-        return view('services', compact('metadata', 'company', 'ourservice_details', 'whychoose'));
+        $servicebg = Service::select('image')->first();
+        return view('services', compact('metadata', 'company', 'ourservice_details', 'whychoose','servicebg'));
     }
 
 

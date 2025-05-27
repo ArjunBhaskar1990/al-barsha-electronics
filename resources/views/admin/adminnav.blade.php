@@ -82,7 +82,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('page.whychoosehome') }}">
                                 <i class="icon-grid menu-icon"></i>
-                                <span class="menu-title">Why Choose Us</span>
+                                <span class="menu-title">Why Choose (Home)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.whychoose_about') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Why Choose (About)</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -109,6 +115,25 @@
                                 <span class="menu-title">Testimonials</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.ourapproach') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Our Approach</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.branchfooter') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Our Branch & <br/>Footer Title <br/> Contact Image</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.metadata') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">SEO</span>
+                            </a>
+                        </li>
+
 
                         {{-- logout --}}
                         <li class="nav-item">
