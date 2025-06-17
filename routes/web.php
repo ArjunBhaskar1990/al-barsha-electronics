@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MetaDataController;
+use App\Http\Controllers\OurServiceDetailController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
 Route::get('/about', [HomeController::class, 'About'])->name('page.about');
 Route::get('/services', [HomeController::class, 'Services'])->name('page.services');
+Route::get('/services/{servicename}/{serviceid}', [HomeController::class, 'showService'])->name('page.servicesdetails');
 Route::get('/contact', [HomeController::class, 'Contact'])->name('page.contact');
 Route::post('/contact', [HomeController::class, 'sendMessage'])->name('send.contact');
 
@@ -56,6 +58,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/our-services/edit/{service}', [CommonController::class, 'editService'])->name('edit.ourservices');
     Route::patch('/admin/our-services', [CommonController::class, 'updateService'])->name('update.ourservices');
     Route::delete('/admin/our-services/{service}', [CommonController::class, 'destroyService'])->name('destroy.ourservices');
+
+
+    // Our Service Details
+    Route::get('/admin/our-services-details', [OurServiceDetailController::class, 'index'])->name('page.ourservicesdetails');
+    Route::get('/admin/our-services-details/edit/{service}', [OurServiceDetailController::class, 'edit'])->name('edit.ourservicesdetails');
+    Route::patch('/admin/our-services-details', [OurServiceDetailController::class, 'update'])->name('update.ourservicesdetails');
 
 
     // Why Choose Us

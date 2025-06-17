@@ -11,6 +11,7 @@ use App\Models\Marquee;
 use App\Models\MetaData;
 use App\Models\OurApproach;
 use App\Models\OurService;
+use App\Models\OurServiceDetail;
 use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\WhyChooseAbout;
@@ -79,9 +80,21 @@ class HomeController extends Controller
 
 
         $phone = '97152641515';
-        $message = "Hello I am " . $validation['fname'] ." ". $validation['lname']."," . $validation['email'] . "," . $validation['phone'] . "," . $validation['message'];
+        $message = "Hello I am " . $validation['fname'] . " " . $validation['lname'] . "," . $validation['email'] . "," . $validation['phone'] . "," . $validation['message'];
         $url = "https://wa.me/$phone?text=" . urlencode($message);
 
         return Redirect::away($url);
+    }
+
+    public function showService($servicename, $serviceid)
+    {
+
+        $company = Company::first();
+        $servicebg = Service::select('image')->first();
+        // $ourservice_details = OurService::get();
+        $whychoose = WhyChooseUs::first();
+        $servicedata = OurService::where('id', $serviceid)->first();
+        $servicedatadetails = OurServiceDetail::where('service_id', $serviceid)->first();
+        return view('servicesDetails', compact('company', 'servicebg', 'whychoose', 'servicename', 'servicedata', 'servicedatadetails'));
     }
 }

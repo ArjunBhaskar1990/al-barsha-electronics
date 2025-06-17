@@ -276,10 +276,82 @@ class CommonController extends Controller
     public function storeNewService(Request $request)
     {
 
+        if ($request->field1) {
+            $field1 = $request->field1 . "|" . $request->field1_margin . "|" . $request->field1_fontsize . "|" . $request->field1_fontweight;
+        } else {
+            $field1 = "";
+        }
+        if ($request->field2) {
+            $field2 = $request->field2 . "|" . $request->field2_margin . "|" . $request->field2_fontsize . "|" . $request->field2_fontweight;
+        } else {
+            $field2 = "";
+        }
+        if ($request->field3) {
+            $field3 = $request->field3 . "|" . $request->field3_margin . "|" . $request->field3_fontsize . "|" . $request->field3_fontweight;
+        } else {
+            $field3 = "";
+        }
+        if ($request->field4) {
+            $field4 = $request->field4 . "|" . $request->field4_margin . "|" . $request->field4_fontsize . "|" . $request->field4_fontweight;
+        } else {
+            $field4 = "";
+        }
+        if ($request->field5) {
+            $field5 = $request->field5 . "|" . $request->field5_margin . "|" . $request->field5_fontsize . "|" . $request->field5_fontweight;
+        } else {
+            $field5 = "";
+        }
+        if ($request->field6) {
+            $field6 = $request->field6 . "|" . $request->field6_margin . "|" . $request->field6_fontsize . "|" . $request->field6_fontweight;
+        } else {
+            $field6 = "";
+        }
+        if ($request->field7) {
+            $field7 = $request->field7 . "|" . $request->field7_margin . "|" . $request->field7_fontsize . "|" . $request->field7_fontweight;
+        } else {
+            $field7 = "";
+        }
+        if ($request->field8) {
+            $field8 = $request->field8 . "|" . $request->field8_margin . "|" . $request->field8_fontsize . "|" . $request->field8_fontweight;
+        } else {
+            $field8 = "";
+        }
+        if ($request->field9) {
+            $field9 = $request->field9 . "|" . $request->field9_margin . "|" . $request->field9_fontsize . "|" . $request->field9_fontweight;
+        } else {
+            $field9 = "";
+        }
+        if ($request->field10) {
+            $field10 = $request->field10 . "|" . $request->field10_margin . "|" . $request->field10_fontsize . "|" . $request->field10_fontweight;
+        } else {
+            $field10 = "";
+        }
+
+
         $validation = $request->validate([
             'service_name' => 'required',
             'desc' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,svg,png,webp,gif',
+            'field1_margin' => 'nullable|numeric',
+            'field1_fontsize' => 'nullable|numeric',
+            'field2_margin' => 'nullable|numeric',
+            'field2_fontsize' => 'nullable|numeric',
+            'field3_margin' => 'nullable|numeric',
+            'field3_fontsize' => 'nullable|numeric',
+            'field4_margin' => 'nullable|numeric',
+            'field4_fontsize' => 'nullable|numeric',
+            'field5_margin' => 'nullable|numeric',
+            'field5_fontsize' => 'nullable|numeric',
+            'field6_margin' => 'nullable|numeric',
+            'field6_fontsize' => 'nullable|numeric',
+            'field7_margin' => 'nullable|numeric',
+            'field7_fontsize' => 'nullable|numeric',
+            'field8_margin' => 'nullable|numeric',
+            'field8_fontsize' => 'nullable|numeric',
+            'field9_margin' => 'nullable|numeric',
+            'field9_fontsize' => 'nullable|numeric',
+            'field10_margin' => 'nullable|numeric',
+            'field10_fontsize' => 'nullable|numeric',
         ], [
             'desc' => "Service Description field is empty !!"
         ]);
@@ -291,7 +363,17 @@ class CommonController extends Controller
         OurService::create([
             'service_name' => $validation['service_name'],
             'desc' => $validation['desc'],
-            'image' => $new_image
+            'image' => $new_image,
+            'field1' => $field1,
+            'field2' => $field2,
+            'field3' =>  $field3,
+            'field4' =>  $field4,
+            'field5' =>  $field5,
+            'field6' =>  $field6,
+            'field7' =>  $field7,
+            'field8' =>  $field8,
+            'field9' =>  $field9,
+            'field10' =>  $field10,
         ]);
 
         return redirect()->back()->with('success', 'New Service Added !!');
@@ -305,10 +387,81 @@ class CommonController extends Controller
 
     public function updateService(Request $request)
     {
+        if ($request->field1) {
+            $field1 = $request->field1 . "|" . $request->field1_margin . "|" . $request->field1_fontsize . "|" . $request->field1_fontweight;
+        } else {
+            $field1 = "";
+        }
+        if ($request->field2) {
+            $field2 = $request->field2 . "|" . $request->field2_margin . "|" . $request->field2_fontsize . "|" . $request->field2_fontweight;
+        } else {
+            $field2 = "";
+        }
+        if ($request->field3) {
+            $field3 = $request->field3 . "|" . $request->field3_margin . "|" . $request->field3_fontsize . "|" . $request->field3_fontweight;
+        } else {
+            $field3 = "";
+        }
+        if ($request->field4) {
+            $field4 = $request->field4 . "|" . $request->field4_margin . "|" . $request->field4_fontsize . "|" . $request->field4_fontweight;
+        } else {
+            $field4 = "";
+        }
+        if ($request->field5) {
+            $field5 = $request->field5 . "|" . $request->field5_margin . "|" . $request->field5_fontsize . "|" . $request->field5_fontweight;
+        } else {
+            $field5 = "";
+        }
+        if ($request->field6) {
+            $field6 = $request->field6 . "|" . $request->field6_margin . "|" . $request->field6_fontsize . "|" . $request->field6_fontweight;
+        } else {
+            $field6 = "";
+        }
+        if ($request->field7) {
+            $field7 = $request->field7 . "|" . $request->field7_margin . "|" . $request->field7_fontsize . "|" . $request->field7_fontweight;
+        } else {
+            $field7 = "";
+        }
+        if ($request->field8) {
+            $field8 = $request->field8 . "|" . $request->field8_margin . "|" . $request->field8_fontsize . "|" . $request->field8_fontweight;
+        } else {
+            $field8 = "";
+        }
+        if ($request->field9) {
+            $field9 = $request->field9 . "|" . $request->field9_margin . "|" . $request->field9_fontsize . "|" . $request->field9_fontweight;
+        } else {
+            $field9 = "";
+        }
+        if ($request->field10) {
+            $field10 = $request->field10 . "|" . $request->field10_margin . "|" . $request->field10_fontsize . "|" . $request->field10_fontweight;
+        } else {
+            $field10 = "";
+        }
+
         $validation = $request->validate([
             'service_name' => 'required',
             'desc' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,svg,png,webp,gif',
+            'field1_margin' => 'nullable|numeric',
+            'field1_fontsize' => 'nullable|numeric',
+            'field2_margin' => 'nullable|numeric',
+            'field2_fontsize' => 'nullable|numeric',
+            'field3_margin' => 'nullable|numeric',
+            'field3_fontsize' => 'nullable|numeric',
+            'field4_margin' => 'nullable|numeric',
+            'field4_fontsize' => 'nullable|numeric',
+            'field5_margin' => 'nullable|numeric',
+            'field5_fontsize' => 'nullable|numeric',
+            'field6_margin' => 'nullable|numeric',
+            'field6_fontsize' => 'nullable|numeric',
+            'field7_margin' => 'nullable|numeric',
+            'field7_fontsize' => 'nullable|numeric',
+            'field8_margin' => 'nullable|numeric',
+            'field8_fontsize' => 'nullable|numeric',
+            'field9_margin' => 'nullable|numeric',
+            'field9_fontsize' => 'nullable|numeric',
+            'field10_margin' => 'nullable|numeric',
+            'field10_fontsize' => 'nullable|numeric',
         ], [
             'desc' => "Service Description field is empty !!"
         ]);
@@ -337,6 +490,16 @@ class CommonController extends Controller
         $service->update([
             'service_name' => $validation['service_name'],
             'desc' => $validation['desc'],
+            'field1' => $field1,
+            'field2' => $field2,
+            'field3' =>  $field3,
+            'field4' =>  $field4,
+            'field5' =>  $field5,
+            'field6' =>  $field6,
+            'field7' =>  $field7,
+            'field8' =>  $field8,
+            'field9' =>  $field9,
+            'field10' =>  $field10,
         ]);
 
         return redirect()->route('page.ourservices')->with('success', 'Service Updated !!');

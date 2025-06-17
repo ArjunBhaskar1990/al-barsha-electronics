@@ -80,6 +80,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page.ourservicesdetails') }}">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Our Services Details</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('page.whychoosehome') }}">
                                 <i class="icon-grid menu-icon"></i>
                                 <span class="menu-title">Why Choose (Home)</span>

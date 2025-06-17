@@ -1,6 +1,5 @@
 @extends('components.layout')
 @section('content')
-
     <!-- Header Start -->
     <header class="main-header">
         <div class="header-sticky">
@@ -16,7 +15,8 @@
 
 
     <!-- Page Header Start -->
-    <div class="page-header bg-section parallaxie" style="background-image: url('/storage/uploads/common/{{ $servicebg->image }}')">
+    <div class="page-header bg-section parallaxie"
+        style="background-image: url('/storage/uploads/common/{{ $servicebg->image }}')">
         <!-- Page Header Box Start -->
         <div class="page-header-box">
             <div class="container-fluid">
@@ -69,10 +69,20 @@
             <div class="row g-4">
 
                 @foreach ($ourservice_details as $item)
+                    @php
+
+                    $link = str_replace(" ","-", strtoLower($item->service_name))
+
+                    @endphp
                     <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                         <div class="card">
-                            <img src="{{ asset('/storage/uploads/services/' . $item->image) }}" alt="{{ $item->name }}">
-                            <h3 class="card-title">{{ $item->service_name }}</h3>
+
+                            <a href="{{ route('page.servicesdetails', [$link, $item->id]) }}">
+                                <img src="{{ asset('/storage/uploads/services/' . $item->image) }}"
+                                    alt="{{ $item->name }}">
+                                <h3 class="card-title">{{ $item->service_name }}</h3>
+                            </a>
+
                             <div class="px-5">
                                 <p class="d-flex justify-content-center">
                                     {{ $item->desc }}
@@ -82,7 +92,8 @@
                             <div class="d-grid ">
 
                                 <button class="btn btn-primary">
-                                    <a href="https://wa.me/{{ $company->phone1 }}" alt="" class="w-100 text-white  ">
+                                    <a href="https://wa.me/{{ $company->phone1 }}" alt=""
+                                        class="w-100 text-white  ">
                                         <img style="width:25px; height:25px;" src="/storage/uploads/whatsapp.gif" />
 
                                         Whatsapp
@@ -96,35 +107,6 @@
                         </div>
                     </div>
                 @endforeach
-
-                {{-- <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card">
-                        <img src="/storage/assets/images/an.jpg" alt="AMC">
-                        <h3 class="card-title">Annual Maintenance Contracts</h3>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card">
-                        <img src="/storage/assets/images/data.jpg" alt="Data Migration">
-                        <h3 class="card-title">Data Migration & Recovery</h3>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <img src="/storage/assets/images/it.jpg" alt="IT Hardware">
-                        <h3 class="card-title">IT Hardware Sales & Services</h3>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card">
-                        <img src="/storage/assets/images/dm.jpg" alt="Digital Marketing">
-                        <h3 class="card-title">Digital Marketing</h3>
-                    </div>
-                </div> --}}
-
             </div>
         </div>
     </section>
